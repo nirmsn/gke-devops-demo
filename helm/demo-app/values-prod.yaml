@@ -17,3 +17,4 @@ mysql:
 
 ingress:
   host: ivoxa.ai
+  tlsSecret: prod-ivoxa-tls

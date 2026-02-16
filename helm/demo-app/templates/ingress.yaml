@@ -10,10 +10,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - dev.ivoxa.ai
-      secretName: ivoxa-tls
+        - {{ .Values.ingress.host }}
+      secretName: {{ .Values.ingress.tlsSecret }}
   rules:
-    - host: dev.ivoxa.ai
+    - host: {{ .Values.ingress.host }}
       http:
         paths:
           - path: /

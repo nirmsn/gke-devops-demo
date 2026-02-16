@@ -19,6 +19,9 @@ jobs:
     - uses: google-github-actions/setup-gcloud@v1
       with:
         project_id: nirmal-learning
+        install_components: 'gke-gcloud-auth-plugin'
+
+    - run: echo "USE_GKE_GCLOUD_AUTH_PLUGIN=True" >> $GITHUB_ENV
 
     - run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
@@ -38,7 +41,7 @@ jobs:
       run: |
         helm upgrade --install demo-prod ./helm/demo-app \
           --namespace prod \
+          --create-namespace \
+          -f helm/demo-app/values-prod.yaml \
           --set backend.tag=${{ github.sha }} \
-          --set frontend.tag=${{ github.sha }} \
-          --set ingress.host=ivoxa.ai \
-          --set backend.replicas=3
+          --set frontend.tag=${{ github.sha }}

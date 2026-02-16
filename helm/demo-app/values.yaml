@@ -1,0 +1,19 @@
+namespace: dev
+
+backend:
+  image: us-central1-docker.pkg.dev/nirmal-learning/demo-repo/backend
+  tag: "v1"
+  replicas: 2
+
+frontend:
+  image: us-central1-docker.pkg.dev/nirmal-learning/demo-repo/frontend
+  tag: "v1"
+
+mysql:
+  image: mysql:8
+  rootPassword: password
+  database: demo
+  storage: 10Gi
+
+ingress:
+  host: dev.ivoxa.ai
